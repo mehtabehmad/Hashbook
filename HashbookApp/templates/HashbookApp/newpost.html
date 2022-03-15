@@ -1,0 +1,41 @@
+{% extends 'HashbookApp/layout.html' %}
+
+{% block title %}
+    <title> Add Post </title> 
+{% endblock %}
+
+{% block style %}
+    <style>
+        div.newpost-box {
+            text-align:center;
+            box-shadow:1px 1px 10px 1px lightgray;
+            border-radius: 10px;
+            padding:30px;
+            margin:10px;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}    
+{% endblock %}
+
+{% block body %}
+
+    <div class="newpost-box">
+        <h3 class="mb-4">Add a new Post</h3>
+        <form class="form" action="{% url 'HashbookApp:newpost' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <input type="text" name="title" required class="form-control" placeholder="Title">
+            </div>
+            <div class="mb-3">
+                <textarea type="text" name="text" required class="form-control" placeholder="Your views ..." rows="10"></textarea>
+            </div>        
+            <input  class="btn btn-primary" type="submit" value="Submit">
+            <input type="hidden" value="{% url 'HashbookApp:posts' %}">
+        </form>
+    </div>
+    
+{% endblock %}
+   

@@ -1,0 +1,51 @@
+{% extends 'HashbookApp/layout.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Home </title> 
+{% endblock %}
+
+{% block additional_javascript %}
+
+
+{% endblock additional_javascript %}
+
+{% block style %}
+    <style>
+    </style>
+{% endblock %}
+
+{% block header %}
+    
+    
+    
+        <!--<img src="{% static 'myprofile/logo.png' %}" width="100px" alt="Logo"/>-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-6 mt-5">
+                    <span class="bi-hash text-danger text-left" style="font-size:200px;"></span><br>
+                </div>
+                <div class="col-6">
+                    <h1 style="margin-top:140px;" id="welcome"> Inspire the world with your ideas,
+                        {% if user.is_authenticated %}
+                            <span class="text-success">{{request.user | title }}!</span>
+                        {% else %}
+                            <br>
+                            <a href="{% url 'Users:login' %}" class="btn btn-outline-success">Login</a>
+                            <a href="{% url 'Users:signup' %}" class="btn btn-outline-danger">Register</a>    
+                        {% endif %}
+                    </h1>
+                </div>
+            </div>
+
+        </div>
+        
+{% endblock %}
+
+{% block body %}
+    
+{% endblock %}
+   
+
+<!--Username:mehtab, password:Passprofile@1-->

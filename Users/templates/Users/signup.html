@@ -1,0 +1,49 @@
+{% extends 'HashbookApp/layout.html' %}
+
+
+{% load static %}
+
+{% block additional_javascript %}
+    <script></script>
+{% endblock additional_javascript %}
+
+{% block style %}
+    <style>
+        
+        div.signup-box {
+            text-align:center;
+            box-shadow:1px 1px 10px 1px lightgray;
+            border-radius: 10px;
+            padding:30px;
+            margin:20px;
+        }
+        
+    </style>
+{% endblock %}
+
+{% block body %}
+
+    <h1></h1>
+    {% if message and message == "There already exists a user with this username, use some other username!" %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %}
+    
+
+    <div class="signup-box">
+        <h3 class="mb-4">Create a new Account</h3>
+        <form class="form" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" id="name" name="username" class="form-control" required autofocus placeholder="Username">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password1" autocomplete="new-password" required id="id_password1" class="form-control" placeholder="Password">
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password2" autocomplete="new-password" required id="id_password2" class="form-control" placeholder="Password Confirmation">
+            </div>
+    
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

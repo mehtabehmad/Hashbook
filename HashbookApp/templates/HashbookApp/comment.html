@@ -1,0 +1,44 @@
+{% extends 'HashbookApp/layout.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Add Comment </title> 
+{% endblock %}
+
+{% block style %}
+    <style>
+        div.comment-box {
+            text-align:center;
+            box-shadow:1px 1px 10px 1px lightgray;
+            border-radius: 10px;
+            padding:30px;
+            margin:10px;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}    
+    
+{% endblock %}
+
+{% block body %}
+    
+    <div class="comment-box">
+        <h3 class="mb-4">Add a new comment.</h3>
+        <form class="form" action="{% url 'HashbookApp:comment' post.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <textarea type="text" name="text" required autocapitalize="none" rows="12" autofocus class="form-control" placeholder="Comment..."></textarea>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-danger">
+                Comment
+                </button>
+            </div>
+            <input type="hidden" value="{% url 'HashbookApp:post' post.id %}">
+        </form>
+    </div>
+
+{% endblock %}
+   

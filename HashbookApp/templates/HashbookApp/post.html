@@ -1,0 +1,66 @@
+{% extends 'HashbookApp/layout.html' %}
+
+{% block title %}
+    <title> Post | {{ post.id }} </title> 
+{% endblock %}
+
+
+{% block additional_javascript %}
+    <script>
+        
+
+    </script>
+{% endblock %}
+
+{% block style %}
+    <style>
+        div.comment {
+            border:1px solid lightgray;
+            border-radius: 10px;
+            padding:12px;
+            margin-top:10px;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+
+    <h1 class="text-center"> {{ post.title }}</h1>
+    
+    <p class="text-center"><b>{{ post.author | title }}</b> <span class="bi-patch-check-fill text-primary"></span> | {{ post.date_published | date}}</p>
+    <hr>
+
+{% endblock %}
+
+{% block body %}
+
+        <div class="lead">{{ post.text | linebreaks }}</div>
+        
+        <div class="text-center">
+            <a href="{% url 'HashbookApp:comment' post.id %}" class="btn btn-outline-primary" title="Comment">Comment <span class="badge rounded-pill bg-danger">{{ post.post.all.count }} </span></a>
+            {% if user.is_authenticated and request.user == post.author %}
+                <a href="{% url 'HashbookApp:edit' post.id %}" class="btn btn-outline-success" title="Edit">Edit</a>
+                <a href="{% url 'HashbookApp:delete' post.id %}" class="btn btn-outline-danger" title="Delete">Delete</a>
+            {% endif %}
+        </div>
+        
+        {% for comment in comments %}
+        <div class="comment">
+            <div class="text-center">
+                <b>{{ comment.author | title }}</b> <span class="bi-patch-check-fill text-primary"></span> | 
+                {{ comment.date_published | date}}
+            </div>
+            <div>{{comment.text}}</div>
+            <div class="text-center">
+                {% if user.is_authenticated and request.user == comment.author %}
+                    <a href="{% url 'HashbookApp:cedit' comment.id %}" class="btn btn-outline-info btn-sm" title="Edit">Edit</a>
+                    <a href="{% url 'HashbookApp:cdelete' comment.id %}" class="btn btn-outline-danger btn-sm" title="Delete">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %} 
+            <p>No comments yet!</p>       
+        {% endfor %}
+            
+{% endblock %}
+   

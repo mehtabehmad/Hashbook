@@ -1,0 +1,70 @@
+{% extends 'HashbookApp/layout.html' %}
+
+{% block title %}
+    <title> Posts </title> 
+{% endblock %}
+
+{% block style %}
+    <style>
+        span {
+            border-raidus: 100px;
+        }
+
+        #name:hover {
+            background-color:#F93154;
+            color:white;
+            cursor: pointer;       
+        }
+
+        #upvotes:hover {
+            background-color:#00B74A;
+            color:white;
+            cursor: pointer;       
+        }
+
+        #comments:hover {
+            background-color:#39C0ED;
+            color:white;
+            cursor: pointer;       
+        }
+        
+    </style>
+
+
+{% endblock %}
+
+{% block header %}
+
+    
+
+{% endblock %}
+
+{% block body %}
+
+    
+
+    {% for post in posts %}
+    <div id="post_box">
+        <div class="mb-4 border shadow p-3 bg-body" style="border-radius:10px;">
+            <h4 class="mb-2"><a href="{% url 'HashbookApp:post' post.id %}">{{ post.title }}</a></h4>
+            <div class="mb-3">
+                <p class=""><b>{{ post.author | title }}</b> <span class="bi-patch-check-fill text-primary"></span> | {{ post.date_published | date}}</p>
+                <!--<button class="btn btn-sm border border-danger" id="name">{{ post.author | title }} <span id="post_feature" class="bi-check-circle-fill text-primary"></span></button> 
+                <button class="btn btn-sm border border-success" id="upvotes" >Upvotes <span id="post_feature"class="badge rounded-pill bg-danger"> {{ post.upvotes }}</span></button>
+                <button class="btn border border-danger" id="downvotes" >Downvotes <span id="post_feature" class="badge rounded-pill bg-danger"> {{ post.downvotes }}</span></button> 
+                <button class="btn btn-sm border border-info" id="comments" >Comments <span id="post_feature" class="badge rounded-pill bg-success"> {{ post.post.all.count }} </span></button>-->
+            
+            </div> 
+            <div class="mt-2"> {{ post.text | truncatewords:30  }} </div>
+            <!--<div class="mt-2 lead"> {{ post.text | linebreaks | truncatewords:20  }} </div>-->
+            
+        </div>
+    </div>
+    {% empty %}
+        <p>No posts yet!</p>
+    {% endfor %}
+
+    
+
+{% endblock %}
+   
