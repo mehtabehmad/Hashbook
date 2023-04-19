@@ -32,8 +32,8 @@
                             <span class="text-success">{{request.user | title }}!</span>
                         {% else %}
                             <br>
-                            <a href="{% url 'Users:login' %}" class="btn btn-outline-success">Login</a>
-                            <a href="{% url 'Users:signup' %}" class="btn btn-outline-danger">Register</a>    
+                            <a href="{% url 'Users:login' %}" class="btn btn-sm btn-outline-success">Login</a>
+                            <a href="{% url 'Users:signup' %}" class="btn btn-sm btn-outline-danger">Register</a>    
                         {% endif %}
                     </h1>
                 </div>
